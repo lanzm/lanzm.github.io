@@ -1,34 +1,34 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description"><meta name="keywords" content="Hexo, Gruntjs, Nodejs, Reactjs, Vuejs"><title>算法导论-第四章 Strassen - LanZM</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favicon.ico"></head><body><input id="navi" type="checkbox"><ul class="main-navication"><li><a href="/"><span>Home</span></a></li><li><a href="https://github.com"><span>Github</span></a></li><li><a href="https://www.v2ex.com/"><span>V2EX</span></a></li><li><a href="https://getpocket.com/a/queue/"><span>Pocket</span></a></li><li><a href="https://leetcode.com/"><span>LeetCode</span></a></li></ul><div class="wrapper" id="wrap"><div class="post-header"><label class="navi-button light" for="navi">MENU</label><img class="background" src="http://lanzm.github.io/img/page.jpg"><div class="post-title"><h1 class="title">算法导论-第四章 Strassen</h1><ul class="meta"><li><i class="icon icon-author"></i>LanZM</li><li><i class="icon icon-clock"></i>2 Minutes</li><li><i class="icon icon-calendar"></i>September 14, 2017</li></ul></div></div><div class="article-content" style="max-width:800px"><h1 id="矩阵乘法的Strassen算法"><a href="#矩阵乘法的Strassen算法" class="headerlink" title="矩阵乘法的Strassen算法"></a>矩阵乘法的Strassen算法</h1><h2 id="矩阵乘法定义"><a href="#矩阵乘法定义" class="headerlink" title="矩阵乘法定义"></a>矩阵乘法定义</h2><p><img src="https://lanzm.github.io/img/20170914-1.png" alt=""></p>
-<h2 id="矩阵乘法伪代码"><a href="#矩阵乘法伪代码" class="headerlink" title="矩阵乘法伪代码"></a>矩阵乘法伪代码</h2><p><img src="https://lanzm.github.io/img/20170914-2.png" alt=""></p>
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description"><meta name="keywords" content="Hexo, Gruntjs, Nodejs, Reactjs, Vuejs"><title>算法导论-第四章 Strassen - LanZM</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favicon.ico"></head><body><input id="navi" type="checkbox"><ul class="main-navication"><li><a href="/"><span>Home</span></a></li><li><a href="https://github.com"><span>Github</span></a></li><li><a href="https://www.v2ex.com/"><span>V2EX</span></a></li><li><a href="https://getpocket.com/a/queue/"><span>Pocket</span></a></li><li><a href="https://leetcode.com/"><span>LeetCode</span></a></li></ul><div class="wrapper" id="wrap"><div class="post-header"><label class="navi-button light" for="navi">MENU</label><img class="background" src="http://owgvh9m33.bkt.clouddn.com/page.jpg"><div class="post-title"><h1 class="title">算法导论-第四章 Strassen</h1><ul class="meta"><li><i class="icon icon-author"></i>LanZM</li><li><i class="icon icon-clock"></i>2 Minutes</li><li><i class="icon icon-calendar"></i>September 14, 2017</li></ul></div></div><div class="article-content" style="max-width:800px"><h1 id="矩阵乘法的Strassen算法"><a href="#矩阵乘法的Strassen算法" class="headerlink" title="矩阵乘法的Strassen算法"></a>矩阵乘法的Strassen算法</h1><h2 id="矩阵乘法定义"><a href="#矩阵乘法定义" class="headerlink" title="矩阵乘法定义"></a>矩阵乘法定义</h2><p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-1.png" alt=""></p>
+<h2 id="矩阵乘法伪代码"><a href="#矩阵乘法伪代码" class="headerlink" title="矩阵乘法伪代码"></a>矩阵乘法伪代码</h2><p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-2.png" alt=""></p>
 <p>三重的for循环都执行到n步，第7行每次执行都花费常量时间，因此SQUARE-MATRIX-MULTIPLY花费Θ(n^3)时间。</p>
-<h2 id="递归分治算法解矩阵乘法"><a href="#递归分治算法解矩阵乘法" class="headerlink" title="递归分治算法解矩阵乘法"></a>递归分治算法解矩阵乘法</h2><p><img src="https://lanzm.github.io/img/20170914-3.png" alt=""></p>
+<h2 id="递归分治算法解矩阵乘法"><a href="#递归分治算法解矩阵乘法" class="headerlink" title="递归分治算法解矩阵乘法"></a>递归分治算法解矩阵乘法</h2><p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-3.png" alt=""></p>
 <p>主要的思路是 矩阵相乘分别是将A矩阵的第一行和B矩阵的第一列对应相乘，得出C矩阵，类似的步骤重复n次（如果AB矩阵是 n X n），递归分治的思想就是将这些步骤、小问题抽取出来，单独处理后再合并成最终的结果。</p>
-<p><img src="https://lanzm.github.io/img/20170914-4.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-4.png" alt=""></p>
 <p>书中提到这段伪代码忽略了一个重要的细节。就是第五行，将每个矩阵分解成为子矩阵。其实是指如何得到矩阵中的元素值，如果真的要把值一个个取出，需要遍历i和j下标，就是两次的for循环，花费Θ(n^2)的时间去得到元素，但是其实只需要利用下标就可以取到元素，花费Θ(1)的时间。所以运行时间的递归式是：</p>
-<p><img src="https://lanzm.github.io/img/20170914-5.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-5.png" alt=""></p>
 <p>书中对递归式给出了很详细的解释。</p>
-<p><img src="https://lanzm.github.io/img/20170914-6.png" alt=""></p>
-<p><img src="https://lanzm.github.io/img/20170914-7.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-6.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-7.png" alt=""></p>
 <h2 id="Strassen算法解矩阵乘法"><a href="#Strassen算法解矩阵乘法" class="headerlink" title="Strassen算法解矩阵乘法"></a>Strassen算法解矩阵乘法</h2><p>书中说Strassen算法是让递归树不那么茂盛一点，即只进行递归7次，而不是8次。<br>步骤：</p>
 <ol>
 <li>将ABC矩阵分解 n/2 X n/2 的子矩阵，运行时间为Θ(1)。</li>
 <li>创建10个子矩阵</li>
 </ol>
-<p><img src="https://lanzm.github.io/img/20170914-8.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-8.png" alt=""></p>
 <p>运行时间为Θ(n^2)。</p>
 <ol>
 <li>递归地计算7个矩阵。</li>
 </ol>
-<p><img src="https://lanzm.github.io/img/20170914-9.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-9.png" alt=""></p>
 <p>运行时间为7T(n/2)。</p>
 <ol>
 <li>最后将第三步的7个矩阵进行加减运算。</li>
 </ol>
-<p><img src="https://lanzm.github.io/img/20170914-10.png" alt=""></p>
-<p><img src="https://lanzm.github.io/img/20170914-11.png" alt=""></p>
-<p><img src="https://lanzm.github.io/img/20170914-12.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-10.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-11.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-12.png" alt=""></p>
 <p>共进行了8次的加减运算，花费时间为Θ(n^2)。（这个不太懂）<br>因此Strassen算法递归式应该为：</p>
-<p><img src="https://lanzm.github.io/img/20170914-13.png" alt=""></p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-13.png" alt=""></p>
 </div><div class="article-meta" style="max-width:800px"></div><div class="article-comment" style="max-width:800px"><div class="ds-thread" id="ds-thread" data-thread-key="cj7kfeuyg0000048y40o3zpvk" data-title="算法导论-第四章 Strassen" data-url="http://lanzm.github.io/2017/09/14/20170914Algorithm-Strassen/" site-name="ueibo"></div><script>var siteName = document.getElementById('ds-thread').getAttribute('site-name');
 var duoshuoQuery = {short_name: siteName};
 (function() {
