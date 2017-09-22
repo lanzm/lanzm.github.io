@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description"><meta name="keywords" content="Hexo, Gruntjs, Nodejs, Reactjs, Vuejs"><title>算法导论-第四章 三种求解递归式的方法 - LanZM</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favicon.ico"></head><body><input id="navi" type="checkbox"><ul class="main-navication"><li><a href="/"><span>Home</span></a></li><li><a href="https://github.com"><span>Github</span></a></li><li><a href="https://www.v2ex.com/"><span>V2EX</span></a></li><li><a href="https://getpocket.com/a/queue/"><span>Pocket</span></a></li><li><a href="https://leetcode.com/"><span>LeetCode</span></a></li></ul><div class="wrapper" id="wrap"><div class="post-header"><label class="navi-button light" for="navi">MENU</label><img class="background" src="http://owgvh9m33.bkt.clouddn.com/page.jpg"><div class="post-title"><h1 class="title">算法导论-第四章 三种求解递归式的方法</h1><ul class="meta"><li><i class="icon icon-author"></i>LanZM</li><li><i class="icon icon-clock"></i>1 Minutes</li><li><i class="icon icon-calendar"></i>September 21, 2017</li></ul></div></div><div class="article-content" style="max-width:800px"><h2 id="代入法"><a href="#代入法" class="headerlink" title="代入法"></a>代入法</h2><p>代入法分为两个步骤：</p>
+<ol>
+<li>猜测解的形式。</li>
+<li>用数学归纳法求出解中的常数，并证明解是对的。<br>其实就是猜测出一个解（这个解不是那么好猜的，需要一定的经验），然后不断的证明缩小其上下边界。</li>
+</ol>
+<p>有一递归式<br><code>T（n）= 2T（n/2）+ n</code><br>猜测其解为<br><code>T（n）= O（nlgn）</code><br>代入式要求证明：恰当选择常数<code>c&gt;0</code>，使得<code>T（n）≤ cnlgn</code>，<br>假定 上界对所有正数<code>m&lt;n</code>都成立，特别对于<code>m=n/2</code>，有<code>T(n/2)≤c（n/2）lg（n/2）</code>（这里不是特别能理解），代入递归式得：</p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveMethod/20170921-1.png" alt=""></p>
+<p>书中提到有些时候，在证明上界时，失败了不一定去找更松的界。以及对于一些递归式做适当的变形后，更易猜测求解。</p>
+<h2 id="递归树法"><a href="#递归树法" class="headerlink" title="递归树法"></a>递归树法</h2><p>可以利用递归树得出一个猜测值并用代入法证明。<br>这里提供两个课后例题的答案，用例题题目来说明证明过程更易理解。</p>
+<p>例题：</p>
+<p>4.4-1、对递归式T（n）= 3T（n/2）+ n，利用递归树确定一个好的渐近上界，用代入法进行验证：</p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveTree/20170921-2.png" alt=""></p>
+<p>4.4-7、对递归式T（n）= 4T（n/2）+ cn（c为常数），给出其解的一个渐近紧确界。用代入法验证：</p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveTree/20170921-3.png" alt=""></p>
+<h2 id="主方法"><a href="#主方法" class="headerlink" title="主方法"></a>主方法</h2><p>相当好用的方法，看以下三种情况的定义。</p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/MasterMethods/20170921-4.png" alt=""></p>
+<p>下面是一些例题：</p>
+<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/MasterMethods/20170921-5.png" alt=""></p>
+</div><div class="article-meta" style="max-width:800px"></div><div class="article-comment" style="max-width:800px"><div class="ds-thread" id="ds-thread" data-thread-key="cj7vn7flf0000ww8y2l50oad4" data-title="算法导论-第四章 三种求解递归式的方法" data-url="http://lanzm.github.io/2017/09/21/20170921Algorithm-ThreeMethods/" site-name="ueibo"></div><script>var siteName = document.getElementById('ds-thread').getAttribute('site-name');
+var duoshuoQuery = {short_name: siteName};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+  || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></div><ul class="navication"><li class="home"><a href="/"><i class="icon icon-home"></i></a></li><li><a href="/2017/09/20/20170920myService-one/"><i class="icon icon-arror-right"></i></a></li></ul><div class="page-footer"><div class="top"><ul class="social"><li><a href="https://github.com" title="Github" target="_blank"><i class="icon icon-github"></i></a></li><li><a href="https://weibo.com" title="Weibo" target="_blank"><i class="icon icon-weibo"></i></a></li><li><a href="http://weixin.qq.com" title="wechat" target="_blank"><i class="icon icon-wechat"></i></a></li></ul></div><div class="bottom"><p class="copyright">© 2017 LanZM<br><small> <a href="https://hexo.io" target="_blank"> </a></small><small> <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&amp;id=25657274&amp;height=32"></iframe></small></p></div></div></div><script>var wrap = document.getElementById('wrap');
+window.onload = function () {
+  wrap.className += ' done';
+}</script></body></html>
