@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description"><meta name="keywords" content="Hexo, Gruntjs, Nodejs, Reactjs, Vuejs"><title>Docker-常用指令 - LanZM</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favicon.ico"></head><body><input id="navi" type="checkbox"><ul class="main-navication"><li><a href="/"><span>Home</span></a></li><li><a href="https://github.com"><span>Github</span></a></li><li><a href="https://www.v2ex.com/"><span>V2EX</span></a></li><li><a href="https://getpocket.com/a/queue/"><span>Pocket</span></a></li><li><a href="https://leetcode.com/"><span>LeetCode</span></a></li></ul><div class="wrapper" id="wrap"><div class="post-header"><label class="navi-button light" for="navi">MENU</label><img class="background" src="http://owgvh9m33.bkt.clouddn.com/page.jpg"><div class="post-title"><h1 class="title">Docker-常用指令</h1><ul class="meta"><li><i class="icon icon-author"></i>LanZM</li><li><i class="icon icon-clock"></i>7 Minutes</li><li><i class="icon icon-calendar"></i>November 6, 2017</li></ul></div></div><div class="article-content" style="max-width:800px"><h2 id="Docker常用指令"><a href="#Docker常用指令" class="headerlink" title="Docker常用指令"></a>Docker常用指令</h2><ul>
+<li>安装Docker<br>Docker<a href="https://www.docker.com/" target="_blank" rel="external">官网</a>有详细的安装说明。</li>
+<li>安装Docker compose<br>参照<a href="https://docs.docker.com/compose/install/" target="_blank" rel="external">官网</a></li>
+<li><p>查看已下载的镜像</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure>
+</li>
+<li><p>查看正在运行的容器</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker ps</div></pre></td></tr></table></figure>
+</li>
+<li><p>进入容器内部</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">exec</span> -it xxx bash</div></pre></td></tr></table></figure>
+</li>
+<li><p>停止容器及删除镜像</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker stop xxx / docker rmi xxx</div></pre></td></tr></table></figure>
+</li>
+<li><p>docker compose启动，停止以及查看容器运行<br>要 <code>cd</code> 到放置 <code>docker-compose.yml</code> 的文件下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker-compose up / docker-compose down / docker-compose ps</div></pre></td></tr></table></figure>
+</li>
+<li><p>编写自己的镜像</p>
+<ol>
+<li><p>任意文件夹下创建一个文件夹，如</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> mnt </div><div class="line">mdkir myfirst</div></pre></td></tr></table></figure>
+<p><code>cd</code> 到创建的文件夹下，创建 <code>Dockerfile</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch Dockerfile</div></pre></td></tr></table></figure>
+</li>
+<li><p>下面示例是编辑 <code>tomcat</code> 的 <code>Dockerfile</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">FROM daocloud.io/library/ubuntu:14.04</div><div class="line">MAINTAINER lan <span class="string">"943951063@qq.com"</span></div><div class="line">RUN apt-get update</div><div class="line"><span class="comment"># copy (和dockerfile同一文件夹下) 容器中的位置</span></div><div class="line">COPY jdk1.8.0_111 /opt/jdk</div><div class="line"><span class="comment">#ADD /mnt/software/jdk-8u111-linux-x64.tar.gz /opt/ </span></div><div class="line">ENV JAVA_HOME /opt/jdk</div><div class="line">ENV JRE_HOME /opt/jdk/jre</div><div class="line">ENV PATH <span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$JRE_HOME</span>/bin:<span class="variable">$JAVA_HOME</span>:<span class="variable">$PATH</span></div><div class="line">ENV CLASSPATH .:<span class="variable">$JAVA_HOME</span>/lib:<span class="variable">$JRE_HOME</span>/lib:<span class="variable">$CLASSPATH</span></div><div class="line">COPY apache-tomcat-7.0.77 /opt/tomcat</div><div class="line"><span class="comment">#RUN unzip /usr/local/tomcat/apache-tomcat-8.0.33.zip </span></div><div class="line">RUN chmod a+x /opt/tomcat/bin/startup.sh</div><div class="line">EXPOSE 8080</div><div class="line">ENTRYPOINT /opt/tomcat/bin/startup.sh &amp;&amp; /bin/bash</div></pre></td></tr></table></figure>
+</li>
+<li><p>构建环境</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#build –t (名称随便) (dockerfile所在的路径)</span></div><div class="line">docker build -t javaweb:0.1 /mnt/myfirst</div></pre></td></tr></table></figure>
+</li>
+<li><p>用 <code>docker images</code> 观察是否存在刚刚创建的镜像，最后跑起来，向外映射8081端口</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#docker run -d -p 8081:8080 javaweb:0.1</span></div><div class="line">docker run -it --rm -p 8081:8080 tomcat:8.0</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>用 <code>docker-compose</code> 构建 <code>Tomcat + MySQL</code>，这里直接贴出 <code>yml</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">version: <span class="string">'3'</span>  </div><div class="line">services:  </div><div class="line">    db:</div><div class="line">        image: daocloud.io/library/mysql:latest</div><div class="line">        restart: always</div><div class="line">        environment:</div><div class="line">            MYSQL_ROOT_PASSWORD: 123456</div><div class="line">            <span class="comment">#MYSQL_ROOT_HOST: 172.19.0.1</span></div><div class="line">        volumes:</div><div class="line">			<span class="comment"># 本机路径：虚拟机路径</span></div><div class="line">            - /E/docker/webTest/mysql/db:/var/lib/mysql</div><div class="line">            <span class="comment">#- /E/docker/webTest/mysql/my.cnf:/etc/mysql/my.cnf</span></div><div class="line">    tomcat:    </div><div class="line">       image: daocloud.io/library/tomcat:8.0.45-jre7  </div><div class="line">       volumes:  </div><div class="line">			<span class="comment"># 本机开发的打包路径：虚拟机的tomcat路径</span></div><div class="line">            - /F/IDEA/a/target/a.war:/usr/<span class="built_in">local</span>/tomcat/webapps/a.war</div><div class="line">       ports:  </div><div class="line">            - <span class="string">"8880:8080"</span>  </div><div class="line">       restart: always</div><div class="line">       links:</div><div class="line">            - db</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><font color="red">注意: </font>这里的数据库连接地址不是 <code>localhost</code> ，要进到容器内部输 <code>cat /etc/hosts</code>查看容器地址。</p>
+</div><div class="article-meta" style="max-width:800px"></div><div class="article-comment" style="max-width:800px"><div class="ds-thread" id="ds-thread" data-thread-key="cj9nrdcmd0009lo8y54r9zjir" data-title="Docker-常用指令" data-url="http://lanzm.github.io/2017/11/06/20171106Docker-常用指令/" site-name="ueibo"></div><script>var siteName = document.getElementById('ds-thread').getAttribute('site-name');
+var duoshuoQuery = {short_name: siteName};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+  || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></div><ul class="navication"><li class="home"><a href="/"><i class="icon icon-home"></i></a></li><li><a href="/2017/10/26/20171026Algorithm-线性时间排序/"><i class="icon icon-arror-right"></i></a></li></ul><div class="page-footer"><div class="top"><ul class="social"><li><a href="https://github.com" title="Github" target="_blank"><i class="icon icon-github"></i></a></li><li><a href="https://weibo.com" title="Weibo" target="_blank"><i class="icon icon-weibo"></i></a></li><li><a href="http://weixin.qq.com" title="wechat" target="_blank"><i class="icon icon-wechat"></i></a></li></ul></div><div class="bottom"><p class="copyright">© 2017 LanZM<br><small> <a href="https://hexo.io" target="_blank"> </a></small><small> <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&amp;id=25657274&amp;height=32"></iframe></small></p></div></div></div><script>var wrap = document.getElementById('wrap');
+window.onload = function () {
+  wrap.className += ' done';
+}</script></body></html>
