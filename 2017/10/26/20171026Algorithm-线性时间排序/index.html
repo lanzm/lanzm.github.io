@@ -1,4 +1,345 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description"><meta name="keywords" content="Hexo, Gruntjs, Nodejs, Reactjs, Vuejs"><title>算法导论-第八章 线性时间排序 - LanZM</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favicon.ico"></head><body><input id="navi" type="checkbox"><ul class="main-navication"><li><a href="/"><span>Home</span></a></li><li><a href="https://github.com"><span>Github</span></a></li><li><a href="https://www.v2ex.com/"><span>V2EX</span></a></li><li><a href="https://getpocket.com/a/queue/"><span>Pocket</span></a></li><li><a href="https://leetcode.com/"><span>LeetCode</span></a></li></ul><div class="wrapper" id="wrap"><div class="post-header"><label class="navi-button light" for="navi">MENU</label><img class="background" src="http://owgvh9m33.bkt.clouddn.com/page.jpg"><div class="post-title"><h1 class="title">算法导论-第八章 线性时间排序</h1><ul class="meta"><li><i class="icon icon-author"></i>LanZM</li><li><i class="icon icon-clock"></i>13 Minutes</li><li><i class="icon icon-calendar"></i>October 26, 2017</li></ul></div></div><div class="article-content" style="max-width:800px"><p><strong>比较排序</strong>，各个元素的次序依赖于它们之间的比较。任何比较排序在最坏情况下都要经过Ω(n lgn)次比较。</p>
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/" title="LanZM" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="比较排序，各个元素的次序依赖于它们之间的比较。任何比较排序在最坏情况下都要经过Ω(n lgn)次比较。 计数排序计数排序的思想是：在待排序序列中，如果我们能统计出有多少元素小于或等于某一个元素，我们也就知道了该元素的正确位置。例如，对于待排序序列 {2,5,3,0,2,3,0,3}，我们统计出有8个元素小于等于5（包括5自己），那么5这个元素就应该被排序到第8位。12345678910111213">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法导论-第八章 线性时间排序">
+<meta property="og:url" content="http://lanzm.github.io/2017/10/26/20171026Algorithm-线性时间排序/index.html">
+<meta property="og:site_name" content="LanZM">
+<meta property="og:description" content="比较排序，各个元素的次序依赖于它们之间的比较。任何比较排序在最坏情况下都要经过Ω(n lgn)次比较。 计数排序计数排序的思想是：在待排序序列中，如果我们能统计出有多少元素小于或等于某一个元素，我们也就知道了该元素的正确位置。例如，对于待排序序列 {2,5,3,0,2,3,0,3}，我们统计出有8个元素小于等于5（包括5自己），那么5这个元素就应该被排序到第8位。12345678910111213">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/%E7%BA%BF%E6%80%A7%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/20171026-1.png">
+<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/%E7%BA%BF%E6%80%A7%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/20171026-2.png">
+<meta property="og:updated_time" content="2017-10-31T06:11:27.318Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法导论-第八章 线性时间排序">
+<meta name="twitter:description" content="比较排序，各个元素的次序依赖于它们之间的比较。任何比较排序在最坏情况下都要经过Ω(n lgn)次比较。 计数排序计数排序的思想是：在待排序序列中，如果我们能统计出有多少元素小于或等于某一个元素，我们也就知道了该元素的正确位置。例如，对于待排序序列 {2,5,3,0,2,3,0,3}，我们统计出有8个元素小于等于5（包括5自己），那么5这个元素就应该被排序到第8位。12345678910111213">
+<meta name="twitter:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/%E7%BA%BF%E6%80%A7%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/20171026-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lanzm.github.io/2017/10/26/20171026Algorithm-线性时间排序/"/>
+
+
+
+
+
+  <title>算法导论-第八章 线性时间排序 | LanZM</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript" 
+  color="0,0,255" opacity='0.5' zIndex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LanZM</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lanzm.github.io/2017/10/26/20171026Algorithm-线性时间排序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="LanZM">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://owgvh9m33.bkt.clouddn.com/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LanZM">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法导论-第八章 线性时间排序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-26T09:29:02+08:00">
+                2017-10-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>比较排序</strong>，各个元素的次序依赖于它们之间的比较。任何比较排序在最坏情况下都要经过Ω(n lgn)次比较。</p>
 <h2 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h2><p>计数排序的思想是：在待排序序列中，如果我们能统计出有多少元素小于或等于某一个元素，我们也就知道了该元素的正确位置。例如，对于待排序序列 <code>{2,5,3,0,2,3,0,3}</code>，我们统计出有8个元素小于等于5（包括5自己），那么5这个元素就应该被排序到第8位。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">COUNTING-SORT(A, B, k)</div><div class="line">1 let C[0..k] be a new array</div><div class="line">2 for i = 0 to k</div><div class="line">3      C[i] = 0</div><div class="line">4 for j = 1 to A.length</div><div class="line">5      C[A[j]] = C[A[j]] + 1</div><div class="line">6 // C[i] now contains the number of elements equal to i.</div><div class="line">7 for i = 1 to k</div><div class="line">8      C[i] = C[i] + C[i-1]</div><div class="line">9 // C[i] now contains the number fo elements less than or equal to i.</div><div class="line">10 for j = A.length downto 1</div><div class="line">11     B[C[A[j]]] = A[j]</div><div class="line">12     C[A[j]] = C[A[j]] - 1</div></pre></td></tr></table></figure></p>
 <p>下图是伪代码实现图解。</p>
 <p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/%E7%BA%BF%E6%80%A7%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/20171026-1.png" alt=""></p>
@@ -8,16 +349,390 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;  </div><div class="line">        <span class="keyword">int</span>[] array = &#123;<span class="number">9</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">56</span>,<span class="number">333</span>,<span class="number">45566</span>,<span class="number">2345678</span>,<span class="number">78</span>,<span class="number">990</span>,<span class="number">12</span>,<span class="number">432</span>,<span class="number">56</span>&#125;;    </div><div class="line">        print(radixSort(array,<span class="number">10</span>,<span class="number">7</span>));    </div><div class="line">    &#125;  </div><div class="line">    <span class="comment">/* </span></div><div class="line"><span class="comment">     *array为待排序数组,radix代表基数,distance代表排序元素的位数 </span></div><div class="line"><span class="comment">     */</span>  </div><div class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> [] radixSort(<span class="keyword">int</span>[] array,<span class="keyword">int</span> radix, <span class="keyword">int</span> distance) <span class="comment">//基于计数排序的基数排序算法  </span></div><div class="line">    &#123;  </div><div class="line">          </div><div class="line">        <span class="keyword">int</span> length = array.length;  </div><div class="line">        <span class="keyword">int</span>[] temp = <span class="keyword">new</span> <span class="keyword">int</span>[length];<span class="comment">//用于暂存元素  </span></div><div class="line">        <span class="keyword">int</span>[] count = <span class="keyword">new</span> <span class="keyword">int</span>[radix];<span class="comment">//用于计数排序  </span></div><div class="line">        <span class="keyword">int</span> divide = <span class="number">1</span>;  </div><div class="line">  </div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; distance; i++) &#123;  </div><div class="line">  </div><div class="line">            System.arraycopy(array, <span class="number">0</span>,temp, <span class="number">0</span>, length);  </div><div class="line">            Arrays.fill(count, <span class="number">0</span>);  </div><div class="line">  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; length; j++) &#123;  </div><div class="line">                <span class="keyword">int</span> tempKey = (temp[j]/divide)%radix;  </div><div class="line">                count[tempKey]++;  </div><div class="line">            &#125;  </div><div class="line">  </div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; radix; j++) &#123;  </div><div class="line">                count [j] = count[j] + count[j-<span class="number">1</span>];  </div><div class="line">            &#125;  </div><div class="line">  </div><div class="line">            <span class="comment">//个人觉的运用计数排序实现计数排序的重点在下面这个方法              </span></div><div class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = length - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;  </div><div class="line">                <span class="keyword">int</span> tempKey = (temp[j]/divide)%radix;  </div><div class="line">                count[tempKey]--;  </div><div class="line">                array[count[tempKey]] = temp[j];  </div><div class="line">            &#125;  </div><div class="line">  </div><div class="line">            divide = divide * radix;                  </div><div class="line">  </div><div class="line">        &#125;  </div><div class="line">        <span class="keyword">return</span> array;  </div><div class="line">    &#125;  </div><div class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> []array)</span><span class="comment">//打印函数  </span></span></div><div class="line"><span class="function">    </span>&#123;  </div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;array.length;i++)  </div><div class="line">        &#123;  </div><div class="line">            System.out.print(array[i]+<span class="string">" "</span>);  </div><div class="line">        &#125;  </div><div class="line">        System.out.println();  </div><div class="line">    &#125;</div></pre></td></tr></table></figure>
 <h2 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h2><p>桶排序的思想是把区间[0,1)划分成n个相同大小的子区间，称为桶，然后将n个输入数分布到各个桶中去，因为输入数均匀且独立分布在[0,1)上，所以，一般不会有很多数落在一个桶中的情况，为了得到结果，先对各个桶中的数进行排序，然后按次序把各桶中的元素列出来。就是按照数组中元素的最高位分别放置到对应桶中，在各个桶中排序后再合并成排序好的数组。<br>桶排序伪代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">BUCKET-SORT(A)</div><div class="line">1 n = A.length</div><div class="line">2 let B[0..n - 1] be a new array</div><div class="line">3 for i = 0 to n - 1</div><div class="line">4      make B[i] an empty list</div><div class="line">5 for i = 1 to n </div><div class="line">6      insert A[i] into list B[nA[i]]</div><div class="line">7 for i = 0 to n - 1</div><div class="line">8      sort list B[i] with insertion sort</div><div class="line">9 concatenate the lists B[0],B[1],...B[n - 1] together in order</div></pre></td></tr></table></figure></p>
 <p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/%E7%BA%BF%E6%80%A7%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/20171026-2.png" alt=""></p>
-</div><div class="article-meta" style="max-width:800px"></div><div class="article-comment" style="max-width:800px"><div class="ds-thread" id="ds-thread" data-thread-key="cj9nrdcmc0008lo8y7x785k4l" data-title="算法导论-第八章 线性时间排序" data-url="http://lanzm.github.io/2017/10/26/20171026Algorithm-线性时间排序/" site-name="ueibo"></div><script>var siteName = document.getElementById('ds-thread').getAttribute('site-name');
-var duoshuoQuery = {short_name: siteName};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] 
-  || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();</script></div><ul class="navication"><li class="home"><a href="/"><i class="icon icon-home"></i></a></li><li><a href="/2017/11/06/20171106Docker-常用指令/"><i class="icon icon-arror-left"></i></a></li><li><a href="/2017/10/24/20171024Algorithm-快速排序/"><i class="icon icon-arror-right"></i></a></li></ul><div class="page-footer"><div class="top"><ul class="social"><li><a href="https://github.com" title="Github" target="_blank"><i class="icon icon-github"></i></a></li><li><a href="https://weibo.com" title="Weibo" target="_blank"><i class="icon icon-weibo"></i></a></li><li><a href="http://weixin.qq.com" title="wechat" target="_blank"><i class="icon icon-wechat"></i></a></li></ul></div><div class="bottom"><p class="copyright">© 2017 LanZM<br><small> <a href="https://hexo.io" target="_blank"> </a></small><small> <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&amp;id=25657274&amp;height=32"></iframe></small></p></div></div></div><script>var wrap = document.getElementById('wrap');
-window.onload = function () {
-  wrap.className += ' done';
-}</script></body></html>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/24/20171024Algorithm-快速排序/" rel="next" title="算法导论-第七章 快速排序">
+                <i class="fa fa-chevron-left"></i> 算法导论-第七章 快速排序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/06/20171106Docker-常用指令/" rel="prev" title="Docker-常用指令">
+                Docker-常用指令 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="Mi8xLzM="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://owgvh9m33.bkt.clouddn.com/me.jpg"
+               alt="LanZM" />
+          <p class="site-author-name" itemprop="name">LanZM</p>
+           
+              <p class="site-description motion-element" itemprop="description">我本可以</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/lanzm/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://weibo.com/3320108431/profile?topnav=1&wvr=6&is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#计数排序"><span class="nav-number">1.</span> <span class="nav-text">计数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基数排序"><span class="nav-number">2.</span> <span class="nav-text">基数排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#桶排序"><span class="nav-number">3.</span> <span class="nav-text">桶排序</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LanZM</span>
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
