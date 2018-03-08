@@ -103,21 +103,21 @@
 
 
 
-<meta name="description" content="最大子数组寻找数组中的和最大的非空连续子数组，这样的连续最大子数组，这样的连续子数组称为 最大子数组。 暴力求解最大子数组问题12345678910111213141516171819202122public int maximumSubarray(int [] a)&amp;#123;       int max = 0;       int low = 0;       int high = 0;">
+<meta name="description" content="花褪残红青杏小。小燕子飞时，绿水人家绕。枝上柳绵吹又少。天涯何处无芳草！墙里秋千墙外道。墙外行人，墙里佳人笑。笑渐不闻声渐悄。多情却被无情恼。—— 李煜《相见欢·林花谢了春红》">
 <meta name="keywords" content="算法导论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法导论-第四章 Maximum subarray problem">
 <meta property="og:url" content="http://lanzm.github.io/2017/09/12/20170912Algorithm-MaximumSubarrayProblem/index.html">
 <meta property="og:site_name" content="LanZM">
-<meta property="og:description" content="最大子数组寻找数组中的和最大的非空连续子数组，这样的连续最大子数组，这样的连续子数组称为 最大子数组。 暴力求解最大子数组问题12345678910111213141516171819202122public int maximumSubarray(int [] a)&amp;#123;       int max = 0;       int low = 0;       int high = 0;">
+<meta property="og:description" content="花褪残红青杏小。小燕子飞时，绿水人家绕。枝上柳绵吹又少。天涯何处无芳草！墙里秋千墙外道。墙外行人，墙里佳人笑。笑渐不闻声渐悄。多情却被无情恼。—— 李煜《相见欢·林花谢了春红》">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-1.png">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-2.png">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-3.png">
-<meta property="og:updated_time" content="2018-01-22T12:16:59.361Z">
+<meta property="og:updated_time" content="2018-03-08T08:08:55.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法导论-第四章 Maximum subarray problem">
-<meta name="twitter:description" content="最大子数组寻找数组中的和最大的非空连续子数组，这样的连续最大子数组，这样的连续子数组称为 最大子数组。 暴力求解最大子数组问题12345678910111213141516171819202122public int maximumSubarray(int [] a)&amp;#123;       int max = 0;       int low = 0;       int high = 0;">
+<meta name="twitter:description" content="花褪残红青杏小。小燕子飞时，绿水人家绕。枝上柳绵吹又少。天涯何处无芳草！墙里秋千墙外道。墙外行人，墙里佳人笑。笑渐不闻声渐悄。多情却被无情恼。—— 李煜《相见欢·林花谢了春红》">
 <meta name="twitter:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-1.png">
 
 
@@ -348,7 +348,11 @@
       
 
       
-        <h2 id="最大子数组"><a href="#最大子数组" class="headerlink" title="最大子数组"></a>最大子数组</h2><p>寻找数组中的和最大的非空连续子数组，这样的连续最大子数组，这样的连续子数组称为 最大子数组。<br><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-1.png" alt=""></p>
+        <!-- 标签别名 -->
+<blockquote class="blockquote-center"><p>花褪残红青杏小。小燕子飞时，绿水人家绕。枝上柳绵吹又少。天涯何处无芳草！<br>墙里秋千墙外道。墙外行人，墙里佳人笑。笑渐不闻声渐悄。多情却被无情恼。<br><br><strong>—— 李煜《相见欢·林花谢了春红》</strong> </p>
+</blockquote>
+<a id="more"></a>
+<h2 id="最大子数组"><a href="#最大子数组" class="headerlink" title="最大子数组"></a>最大子数组</h2><p>寻找数组中的和最大的非空连续子数组，这样的连续最大子数组，这样的连续子数组称为 最大子数组。<br><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-1.png" alt=""></p>
 <h2 id="暴力求解最大子数组问题"><a href="#暴力求解最大子数组问题" class="headerlink" title="暴力求解最大子数组问题"></a>暴力求解最大子数组问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximumSubarray</span><span class="params">(<span class="keyword">int</span> [] a)</span></span>&#123;</div><div class="line"></div><div class="line">       <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</div><div class="line">       <span class="keyword">int</span> high = <span class="number">0</span>;</div><div class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i ++ )&#123;</div><div class="line"></div><div class="line">           <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; a.length; j ++)&#123;</div><div class="line"></div><div class="line">               sum = sum + a[j];</div><div class="line">               <span class="keyword">if</span> (sum &gt; max)&#123;</div><div class="line">                   </div><div class="line">                   max = sum;</div><div class="line">                   low = i;</div><div class="line">                   high = j;</div><div class="line">                   </div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> max;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p>每次内循环都利用上次累加的结果，避免重复运算。外层循环执行n次，第i次外循环内层循环执行n-i+1次，所以总的时间复杂度为Θ(n^2)</p>
 <h2 id="用分治策略求解最大子数组问题"><a href="#用分治策略求解最大子数组问题" class="headerlink" title="用分治策略求解最大子数组问题"></a>用分治策略求解最大子数组问题</h2><p>在分治策略中，递归求解一个问题需要三个步骤：</p>
@@ -487,7 +491,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

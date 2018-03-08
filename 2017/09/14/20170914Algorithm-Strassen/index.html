@@ -103,13 +103,13 @@
 
 
 
-<meta name="description" content="矩阵乘法的Strassen算法矩阵乘法定义 矩阵乘法伪代码 三重的for循环都执行到n步，第7行每次执行都花费常量时间，因此SQUARE-MATRIX-MULTIPLY花费Θ(n^3)时间。 递归分治算法解矩阵乘法 主要的思路是 矩阵相乘分别是将A矩阵的第一行和B矩阵的第一列对应相乘，得出C矩阵，类似的步骤重复n次（如果AB矩阵是 n X n），递归分治的思想就是将这些步骤、小问题抽取出来，单独处">
+<meta name="description" content="谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳。被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常。—— 纳兰性德《浣溪沙·谁念西风独自凉》">
 <meta name="keywords" content="算法导论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法导论-第四章 Strassen">
 <meta property="og:url" content="http://lanzm.github.io/2017/09/14/20170914Algorithm-Strassen/index.html">
 <meta property="og:site_name" content="LanZM">
-<meta property="og:description" content="矩阵乘法的Strassen算法矩阵乘法定义 矩阵乘法伪代码 三重的for循环都执行到n步，第7行每次执行都花费常量时间，因此SQUARE-MATRIX-MULTIPLY花费Θ(n^3)时间。 递归分治算法解矩阵乘法 主要的思路是 矩阵相乘分别是将A矩阵的第一行和B矩阵的第一列对应相乘，得出C矩阵，类似的步骤重复n次（如果AB矩阵是 n X n），递归分治的思想就是将这些步骤、小问题抽取出来，单独处">
+<meta property="og:description" content="谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳。被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常。—— 纳兰性德《浣溪沙·谁念西风独自凉》">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-1.png">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-2.png">
@@ -124,10 +124,10 @@
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-11.png">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-12.png">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-13.png">
-<meta property="og:updated_time" content="2018-01-22T12:17:10.819Z">
+<meta property="og:updated_time" content="2018-03-08T08:04:50.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法导论-第四章 Strassen">
-<meta name="twitter:description" content="矩阵乘法的Strassen算法矩阵乘法定义 矩阵乘法伪代码 三重的for循环都执行到n步，第7行每次执行都花费常量时间，因此SQUARE-MATRIX-MULTIPLY花费Θ(n^3)时间。 递归分治算法解矩阵乘法 主要的思路是 矩阵相乘分别是将A矩阵的第一行和B矩阵的第一列对应相乘，得出C矩阵，类似的步骤重复n次（如果AB矩阵是 n X n），递归分治的思想就是将这些步骤、小问题抽取出来，单独处">
+<meta name="twitter:description" content="谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳。被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常。—— 纳兰性德《浣溪沙·谁念西风独自凉》">
 <meta name="twitter:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-1.png">
 
 
@@ -358,7 +358,11 @@
       
 
       
-        <h1 id="矩阵乘法的Strassen算法"><a href="#矩阵乘法的Strassen算法" class="headerlink" title="矩阵乘法的Strassen算法"></a>矩阵乘法的Strassen算法</h1><h2 id="矩阵乘法定义"><a href="#矩阵乘法定义" class="headerlink" title="矩阵乘法定义"></a>矩阵乘法定义</h2><p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-1.png" alt=""></p>
+        <!-- 标签别名 -->
+<blockquote class="blockquote-center"><p>谁念西风独自凉，萧萧黄叶闭疏窗，沉思往事立残阳。<br>被酒莫惊春睡重，赌书消得泼茶香，当时只道是寻常。<br><br><strong>—— 纳兰性德《浣溪沙·谁念西风独自凉》</strong> </p>
+</blockquote>
+<a id="more"></a>
+<h1 id="矩阵乘法的Strassen算法"><a href="#矩阵乘法的Strassen算法" class="headerlink" title="矩阵乘法的Strassen算法"></a>矩阵乘法的Strassen算法</h1><h2 id="矩阵乘法定义"><a href="#矩阵乘法定义" class="headerlink" title="矩阵乘法定义"></a>矩阵乘法定义</h2><p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-1.png" alt=""></p>
 <h2 id="矩阵乘法伪代码"><a href="#矩阵乘法伪代码" class="headerlink" title="矩阵乘法伪代码"></a>矩阵乘法伪代码</h2><p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-2.png" alt=""></p>
 <p>三重的for循环都执行到n步，第7行每次执行都花费常量时间，因此SQUARE-MATRIX-MULTIPLY花费Θ(n^3)时间。</p>
 <h2 id="递归分治算法解矩阵乘法"><a href="#递归分治算法解矩阵乘法" class="headerlink" title="递归分治算法解矩阵乘法"></a>递归分治算法解矩阵乘法</h2><p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/Strassen/20170914-3.png" alt=""></p>
@@ -506,7 +510,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

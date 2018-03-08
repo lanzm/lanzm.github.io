@@ -103,21 +103,21 @@
 
 
 
-<meta name="description" content="编写启动脚本问题：每次打开服务器都要先插一下TTL，用命令行启动frp，然后才能用ssh连上服务器。能不能开机的时候就自启？并且检测反向代理网络连接是否正常，如果不正常，重新连接，如果连不上及时通知管理者。接下来我们就一个个实现。 实现frp开机自启在Debian（Ubuntu）环境下， 到开机脚本目录下 ， 1cd /etc/init.d 新建一个脚本，名字随意， 1vim frpc 在 frp">
+<meta name="description" content="伤心桥下春波绿，曾是惊鸿照影来。—— 陆游《沈园二首》">
 <meta name="keywords" content="从硬件开始搭建自己的服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从硬件开始搭建自己的服务器（二）">
 <meta property="og:url" content="http://lanzm.github.io/2017/09/24/20170924myService-two/index.html">
 <meta property="og:site_name" content="LanZM">
-<meta property="og:description" content="编写启动脚本问题：每次打开服务器都要先插一下TTL，用命令行启动frp，然后才能用ssh连上服务器。能不能开机的时候就自启？并且检测反向代理网络连接是否正常，如果不正常，重新连接，如果连不上及时通知管理者。接下来我们就一个个实现。 实现frp开机自启在Debian（Ubuntu）环境下， 到开机脚本目录下 ， 1cd /etc/init.d 新建一个脚本，名字随意， 1vim frpc 在 frp">
+<meta property="og:description" content="伤心桥下春波绿，曾是惊鸿照影来。—— 陆游《沈园二首》">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/myService/20170924-1.png">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/myService/20170924-2.png">
 <meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/myService/20170924-3.png">
-<meta property="og:updated_time" content="2018-01-22T12:17:54.541Z">
+<meta property="og:updated_time" content="2018-03-08T07:55:45.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从硬件开始搭建自己的服务器（二）">
-<meta name="twitter:description" content="编写启动脚本问题：每次打开服务器都要先插一下TTL，用命令行启动frp，然后才能用ssh连上服务器。能不能开机的时候就自启？并且检测反向代理网络连接是否正常，如果不正常，重新连接，如果连不上及时通知管理者。接下来我们就一个个实现。 实现frp开机自启在Debian（Ubuntu）环境下， 到开机脚本目录下 ， 1cd /etc/init.d 新建一个脚本，名字随意， 1vim frpc 在 frp">
+<meta name="twitter:description" content="伤心桥下春波绿，曾是惊鸿照影来。—— 陆游《沈园二首》">
 <meta name="twitter:image" content="http://owgvh9m33.bkt.clouddn.com/myService/20170924-1.png">
 
 
@@ -348,7 +348,11 @@
       
 
       
-        <h1 id="编写启动脚本"><a href="#编写启动脚本" class="headerlink" title="编写启动脚本"></a>编写启动脚本</h1><p>问题：每次打开服务器都要先插一下TTL，用命令行启动frp，然后才能用ssh连上服务器。能不能开机的时候就自启？并且检测反向代理网络连接是否正常，如果不正常，重新连接，如果连不上及时通知管理者。<br>接下来我们就一个个实现。</p>
+        <!-- 标签别名 -->
+<blockquote class="blockquote-center"><p>伤心桥下春波绿，曾是惊鸿照影来。<br><br><strong>—— 陆游《沈园二首》</strong> </p>
+</blockquote>
+<a id="more"></a>
+<h1 id="编写启动脚本"><a href="#编写启动脚本" class="headerlink" title="编写启动脚本"></a>编写启动脚本</h1><p>问题：每次打开服务器都要先插一下TTL，用命令行启动frp，然后才能用ssh连上服务器。能不能开机的时候就自启？并且检测反向代理网络连接是否正常，如果不正常，重新连接，如果连不上及时通知管理者。<br>接下来我们就一个个实现。</p>
 <h2 id="实现frp开机自启"><a href="#实现frp开机自启" class="headerlink" title="实现frp开机自启"></a>实现frp开机自启</h2><p>在Debian（Ubuntu）环境下，</p>
 <p>到开机脚本目录下 ，</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/init.d</div></pre></td></tr></table></figure>
@@ -508,7 +512,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
