@@ -106,15 +106,19 @@
 <meta name="description" content="劝君莫惜金缕衣，劝君惜取少年时。花开堪折直须折，莫待无花空摘枝。—— 杜秋娘《金缕衣》">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript-高级定时器">
+<meta property="og:title" content="JavaScript-定时器">
 <meta property="og:url" content="http://lanzm.github.io/2018/03/08/20180308JavaScript-高级定时器/index.html">
 <meta property="og:site_name" content="LanZM">
 <meta property="og:description" content="劝君莫惜金缕衣，劝君惜取少年时。花开堪折直须折，莫待无花空摘枝。—— 杜秋娘《金缕衣》">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-08T07:31:32.480Z">
+<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/JavaScript/%E9%AB%98%E7%BA%A7%E5%AE%9A%E6%97%B6%E5%99%A8/20180308-1.PNG">
+<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/JavaScript/%E9%AB%98%E7%BA%A7%E5%AE%9A%E6%97%B6%E5%99%A8/20180308-2.PNG">
+<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/JavaScript/%E9%AB%98%E7%BA%A7%E5%AE%9A%E6%97%B6%E5%99%A8/20180308-3.PNG">
+<meta property="og:updated_time" content="2018-03-09T06:30:08.582Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript-高级定时器">
+<meta name="twitter:title" content="JavaScript-定时器">
 <meta name="twitter:description" content="劝君莫惜金缕衣，劝君惜取少年时。花开堪折直须折，莫待无花空摘枝。—— 杜秋娘《金缕衣》">
+<meta name="twitter:image" content="http://owgvh9m33.bkt.clouddn.com/JavaScript/%E9%AB%98%E7%BA%A7%E5%AE%9A%E6%97%B6%E5%99%A8/20180308-1.PNG">
 
 
 
@@ -149,7 +153,7 @@
 
 
 
-  <title>JavaScript-高级定时器 | LanZM</title>
+  <title>JavaScript-定时器 | LanZM</title>
   
 
 
@@ -165,11 +169,6 @@
 
 
 
-  
-  
-  <script type="text/javascript" 
-  color="220,220,220" opacity='0.5' zIndex="-2" count="100" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
-  
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript-高级定时器</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript-定时器</h1>
         
 
         <div class="post-meta">
@@ -348,7 +347,17 @@
 <blockquote class="blockquote-center"><p>劝君莫惜金缕衣，劝君惜取少年时。花开堪折直须折，莫待无花空摘枝。<br><br><strong>—— 杜秋娘《金缕衣》</strong> </p>
 </blockquote>
 <a id="more"></a>
-<h2 id="JavaScript定时器理解"><a href="#JavaScript定时器理解" class="headerlink" title="JavaScript定时器理解"></a>JavaScript定时器理解</h2><p>JavaScript运行在单线程的环境内，定时器是计划代码在未来的某个时间执行。在页面加载完后代码的运行、事件处理程序以及Ajax回调函数等浏览器负责排序，指派某段代码运行的时间点。</p>
+<h2 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h2><p>JavaScript运行在单线程的环境内，定时器是计划代码在未来的某个时间执行。在页面加载完后代码的运行、事件处理程序以及Ajax回调函数等浏览器负责排序，指派某段代码运行的时间点。<br><img src="http://owgvh9m33.bkt.clouddn.com/JavaScript/%E9%AB%98%E7%BA%A7%E5%AE%9A%E6%97%B6%E5%99%A8/20180308-1.PNG" alt=""><br>当进程处在空闲状态，用户触发点击事件，点击事件的代码就会被添加到队列中执行，如果不处于空闲状态，代码会等待到进程处于空闲状态时再进行。<br>定时器对队列的工作方式是：当定时器的设置的等待时间过去后将代码插入。而将代码插入后并不代表定时器会马上执行，定时器会等待进程处于空闲状态时执行。<br>下面一个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"my-btn"</span>);</div><div class="line">btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">document</span>.getElementById(<span class="string">"message"</span>).style.visibility = <span class="string">"visible"</span>;</div><div class="line">    &#125;, <span class="number">250</span>);</div><div class="line">    <span class="comment">// 其他代码</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>代码给id为 <code>my-btn</code> 的元素添加了一个点击事件，点击事件设置了一个    延迟250ms后执行的定时器。他的执行图如下：<br><img src="http://owgvh9m33.bkt.clouddn.com/JavaScript/%E9%AB%98%E7%BA%A7%E5%AE%9A%E6%97%B6%E5%99%A8/20180308-2.PNG" alt=""><br>只有在click事件程序结束后才能执行定时器程序。</p>
+<h2 id="setInterval"><a href="#setInterval" class="headerlink" title="setInterval"></a>setInterval</h2><p>和 setTimeout 不同的是 setInterval 会重复执行，而 setTimeout 只会执行一次。但是 setInterval 有两个问题：1、某些间隔会被跳过。2、多个定时器的代码执行之间的间隔可能会比预期的小。<br><img src="http://owgvh9m33.bkt.clouddn.com/JavaScript/%E9%AB%98%E7%BA%A7%E5%AE%9A%E6%97%B6%E5%99%A8/20180308-3.PNG" alt=""><br>为了避免 setInterval 的问题，可以使用链式 setTimeout() 调用替代重复定时器。<br>下面是链式 setTimeout() 基本形式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 处理中</span></div><div class="line">    setTimeout(<span class="built_in">arguments</span>.callee, interval);</div><div class="line">&#125;, interval);</div></pre></td></tr></table></figure></p>
+<p>每次执行 setTimeout 时都是新建一个定时器，而 <code>arguments.callee</code> 用来保证在前一个定时器没执行完之前，不会向队列插入新的定时器。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>);</div><div class="line">    left = <span class="built_in">parseInt</span>(div.style.left) + <span class="number">5</span>;</div><div class="line">    div.style.left = left + <span class="string">"px"</span>;</div><div class="line">    <span class="keyword">if</span> (left &lt; <span class="number">200</span>) &#123;</div><div class="line">        setTimeout(<span class="built_in">arguments</span>.callee, <span class="number">50</span>);</div><div class="line">    &#125;</div><div class="line">&#125;, <span class="number">50</span>);</div></pre></td></tr></table></figure></p>
+<p>代码每次执行时，将id为 <code>myDiv</code> 元素向右移动，直到左坐标为 200px 时停止。</p>
+<h2 id="Yielding-Processes"><a href="#Yielding-Processes" class="headerlink" title="Yielding Processes"></a>Yielding Processes</h2><p>Ajax从后台获取数据后遍历取出数据是一个很常见的动作。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, len = data.length; i &lt; len; i ++) &#123;</div><div class="line">    process(data[i]);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果数据量大，会造成脚本长时间运行而导致超出脚本限制运行时间，浏览器会弹出窗口提示用户是否要继续执行还是停止它。<br>为了避免这种情况，可以用定时器来分割这个循环，叫做数组分块（array chunking）。前提是对循环数据不用同步完成以及不关心数据顺序。<br>基本模式如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// 取出下一个条目 并处理     </span></div><div class="line">    <span class="keyword">var</span> item = array.shift();</div><div class="line">    process(item);</div><div class="line">    <span class="comment">// 若还有条目， 再设置另一个定时器</span></div><div class="line">    <span class="keyword">if</span> (array.length &gt; <span class="number">0</span>) &#123;</div><div class="line">        setTimeout(<span class="built_in">arguments</span>.callee, <span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line">&#125;, <span class="number">100</span>);</div></pre></td></tr></table></figure></p>
+<p>一旦某个函数需要花 50ms 以上的时间完成，最好看是否能将任务分割成定时器小任务。</p>
+<h2 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h2><p>连续进行过多的DOM相关操作可能会导致浏览器挂起，甚至崩溃。尤其是在IE中使用 onresize 事件处理程序容易发生，当调整浏览器大小的时候，该事件会连续触发。为了解决问题，可以使用函数节流。<br>函数节流的做法是 在调用某个事件处理程序时，中间插入一个定时器，防止某些代码没有间断连续重复执行。<br>下面是函数节流的基本形式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> processor = &#123;</div><div class="line">    timeoutId: <span class="literal">null</span>,</div><div class="line">    <span class="comment">// 实际进行处理的方法</span></div><div class="line">    performProcessing: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="comment">//实际执行的代码</span></div><div class="line">    &#125;,</div><div class="line">    <span class="comment">// 初始处理调用的方法</span></div><div class="line">    process: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        clearTimeout(<span class="keyword">this</span>.timeoutId);</div><div class="line">        <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">this</span>.timeoutId = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">            that.performProcessing();</div><div class="line">        &#125;, <span class="number">100</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//尝试开始执行</span></div><div class="line">processor.process();</div></pre></td></tr></table></figure></p>
+<p>这个模式可以用 <code>throttle()</code> 函数简化：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment">* @params method 要执行的函数</span></div><div class="line"><span class="comment">* @params context 在哪个作用域中执行，不填则表示全局</span></div><div class="line"><span class="comment">*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">method, context</span>) </span>&#123;</div><div class="line">    clearTimeout(method.tId);</div><div class="line">    method.tId = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        method.call(context);</div><div class="line">    &#125;, <span class="number">100</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用 call() 来确保方法在适当的环境中执行。节流在 resize 事件中最常用。下面是应用的例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 没有用 节流 时</span></div><div class="line"><span class="built_in">window</span>.onresize = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>);</div><div class="line">    div.style.height = div.offsetWidth + <span class="string">"px"</span>;</div><div class="line">&#125;;</div><div class="line"><span class="comment">// 使用 节流 后</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">resizeDiv</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>);</div><div class="line">    div.style.height = div.offsetWidth + <span class="string">"px"</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">window</span>.onresize = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    throttle(resizeDiv);</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -545,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript定时器理解"><span class="nav-number">1.</span> <span class="nav-text">JavaScript定时器理解</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#setTimeout"><span class="nav-number">1.</span> <span class="nav-text">setTimeout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setInterval"><span class="nav-number">2.</span> <span class="nav-text">setInterval</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yielding-Processes"><span class="nav-number">3.</span> <span class="nav-text">Yielding Processes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数节流"><span class="nav-number">4.</span> <span class="nav-text">函数节流</span></a></li></ol></div>
             
 
           </div>
@@ -630,8 +639,6 @@
   
 
 
-  
-
 
 
 
@@ -659,9 +666,6 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
