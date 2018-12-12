@@ -111,16 +111,16 @@
 <meta property="og:site_name" content="LanZM">
 <meta property="og:description" content="绿蚁新醅酒，红泥小火炉。晚来天欲雪，能饮一杯无？—— 白居易《问刘十九》">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveMethod/20170921-1.png">
-<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveTree/20170921-2.png">
-<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveTree/20170921-3.png">
-<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MasterMethods/20170921-4.png">
-<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MasterMethods/20170921-5.png">
-<meta property="og:updated_time" content="2018-03-08T07:58:41.690Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vvmf8iqj30gc02taa9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vvz8wlbj30l80nbtb9.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vwabi6vj30lq0dht9w.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vwq97y6j30mg07zgmo.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vwz5giyj30m50kitak.jpg">
+<meta property="og:updated_time" content="2018-12-12T05:13:02.757Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法导论-第四章 三种求解递归式的方法">
 <meta name="twitter:description" content="绿蚁新醅酒，红泥小火炉。晚来天欲雪，能饮一杯无？—— 白居易《问刘十九》">
-<meta name="twitter:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveMethod/20170921-1.png">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vvmf8iqj30gc02taa9.jpg">
 
 
 
@@ -355,18 +355,18 @@
 <li>用数学归纳法求出解中的常数，并证明解是对的。<br>其实就是猜测出一个解（这个解不是那么好猜的，需要一定的经验），然后不断的证明缩小其上下边界。</li>
 </ol>
 <p>有一递归式<br><code>T（n）= 2T（n/2）+ n</code><br>猜测其解为<br><code>T（n）= O（nlgn）</code><br>代入式要求证明：恰当选择常数<code>c&gt;0</code>，使得<code>T（n）≤ cnlgn</code>，<br>假定 上界对所有正数<code>m&lt;n</code>都成立，特别对于<code>m=n/2</code>，有<code>T(n/2)≤c（n/2）lg（n/2）</code>（这里不是特别能理解），代入递归式得：</p>
-<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveMethod/20170921-1.png" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vvmf8iqj30gc02taa9.jpg" alt=""></p>
 <p>书中提到有些时候，在证明上界时，失败了不一定去找更松的界。以及对于一些递归式做适当的变形后，更易猜测求解。</p>
 <h2 id="递归树法"><a href="#递归树法" class="headerlink" title="递归树法"></a>递归树法</h2><p>可以利用递归树得出一个猜测值并用代入法证明。<br>这里提供两个课后例题的答案，用例题题目来说明证明过程更易理解。</p>
 <p>例题：</p>
 <p>4.4-1、对递归式T（n）= 3T（n/2）+ n，利用递归树确定一个好的渐近上界，用代入法进行验证：</p>
-<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveTree/20170921-2.png" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vvz8wlbj30l80nbtb9.jpg" alt=""></p>
 <p>4.4-7、对递归式T（n）= 4T（n/2）+ cn（c为常数），给出其解的一个渐近紧确界。用代入法验证：</p>
-<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/RecursiveTree/20170921-3.png" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vwabi6vj30lq0dht9w.jpg" alt=""></p>
 <h2 id="主方法"><a href="#主方法" class="headerlink" title="主方法"></a>主方法</h2><p>相当好用的方法，看以下三种情况的定义。</p>
-<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/MasterMethods/20170921-4.png" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vwq97y6j30mg07zgmo.jpg" alt=""></p>
 <p>下面是一些例题：</p>
-<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/MasterMethods/20170921-5.png" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vwz5giyj30m50kitak.jpg" alt=""></p>
 
       
     </div>

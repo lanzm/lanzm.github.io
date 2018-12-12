@@ -111,14 +111,14 @@
 <meta property="og:site_name" content="LanZM">
 <meta property="og:description" content="花褪残红青杏小。小燕子飞时，绿水人家绕。枝上柳绵吹又少。天涯何处无芳草！墙里秋千墙外道。墙外行人，墙里佳人笑。笑渐不闻声渐悄。多情却被无情恼。—— 李煜《相见欢·林花谢了春红》">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-1.png">
-<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-2.png">
-<meta property="og:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-3.png">
-<meta property="og:updated_time" content="2018-03-08T08:08:55.696Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vnklfmbj30gv043q3m.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vnw51j8j30kb063q4d.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vodaxhmj30bk0esaas.jpg">
+<meta property="og:updated_time" content="2018-12-12T05:04:54.876Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="算法导论-第四章 Maximum subarray problem">
 <meta name="twitter:description" content="花褪残红青杏小。小燕子飞时，绿水人家绕。枝上柳绵吹又少。天涯何处无芳草！墙里秋千墙外道。墙外行人，墙里佳人笑。笑渐不闻声渐悄。多情却被无情恼。—— 李煜《相见欢·林花谢了春红》">
-<meta name="twitter:image" content="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-1.png">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vnklfmbj30gv043q3m.jpg">
 
 
 
@@ -347,7 +347,7 @@
 <blockquote class="blockquote-center"><p>花褪残红青杏小。小燕子飞时，绿水人家绕。枝上柳绵吹又少。天涯何处无芳草！<br>墙里秋千墙外道。墙外行人，墙里佳人笑。笑渐不闻声渐悄。多情却被无情恼。<br><br><strong>—— 李煜《相见欢·林花谢了春红》</strong> </p>
 </blockquote>
 <a id="more"></a>
-<h2 id="最大子数组"><a href="#最大子数组" class="headerlink" title="最大子数组"></a>最大子数组</h2><p>寻找数组中的和最大的非空连续子数组，这样的连续最大子数组，这样的连续子数组称为 最大子数组。<br><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-1.png" alt=""></p>
+<h2 id="最大子数组"><a href="#最大子数组" class="headerlink" title="最大子数组"></a>最大子数组</h2><p>寻找数组中的和最大的非空连续子数组，这样的连续最大子数组，这样的连续子数组称为 最大子数组。<br><img src="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vnklfmbj30gv043q3m.jpg" alt=""></p>
 <h2 id="暴力求解最大子数组问题"><a href="#暴力求解最大子数组问题" class="headerlink" title="暴力求解最大子数组问题"></a>暴力求解最大子数组问题</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maximumSubarray</span><span class="params">(<span class="keyword">int</span> [] a)</span></span>&#123;</div><div class="line"></div><div class="line">       <span class="keyword">int</span> max = <span class="number">0</span>;</div><div class="line">       <span class="keyword">int</span> low = <span class="number">0</span>;</div><div class="line">       <span class="keyword">int</span> high = <span class="number">0</span>;</div><div class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i ++ )&#123;</div><div class="line"></div><div class="line">           <span class="keyword">int</span> sum = <span class="number">0</span>;</div><div class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; a.length; j ++)&#123;</div><div class="line"></div><div class="line">               sum = sum + a[j];</div><div class="line">               <span class="keyword">if</span> (sum &gt; max)&#123;</div><div class="line">                   </div><div class="line">                   max = sum;</div><div class="line">                   low = i;</div><div class="line">                   high = j;</div><div class="line">                   </div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> max;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p>每次内循环都利用上次累加的结果，避免重复运算。外层循环执行n次，第i次外循环内层循环执行n-i+1次，所以总的时间复杂度为Θ(n^2)</p>
 <h2 id="用分治策略求解最大子数组问题"><a href="#用分治策略求解最大子数组问题" class="headerlink" title="用分治策略求解最大子数组问题"></a>用分治策略求解最大子数组问题</h2><p>在分治策略中，递归求解一个问题需要三个步骤：</p>
@@ -356,14 +356,14 @@
 <li>解决（Conquer）递归地求解子问题，如果规模足够小，则停止递归，直接求解。</li>
 <li>合并（Combine）将子问题的解组合成原问题的解。</li>
 </ol>
-<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-2.png" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vnw51j8j30kb063q4d.jpg" alt=""></p>
 <p>找到子数组A[low…high]的中间位置，把子数组拆成两个子数组A[low…mid]和A[mid+1…high]，而A[low…high]任何连续的子数组A[i…j]所处的位置必然是下面三种情况：</p>
 <ul>
 <li>完全在A[low…mid]中</li>
 <li>完全在A[mid+1…high]中</li>
 <li>跨越了中点mid</li>
 </ul>
-<p><img src="http://owgvh9m33.bkt.clouddn.com/Algorithm/MaximumSubarray/20170912-3.png" alt=""></p>
+<p><img src="http://ww1.sinaimg.cn/large/007ipZvVgy1fy3vodaxhmj30bk0esaas.jpg" alt=""></p>
 <p>上图为实现子数组A[i…j]所处的位置跨越了中点mid的情况伪代码，其时间复杂度为Θ(n)。</p>
 
       
